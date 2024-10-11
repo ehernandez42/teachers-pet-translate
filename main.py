@@ -1,6 +1,7 @@
 import os
 import uuid
 
+import uvicorn
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
 
@@ -89,6 +90,8 @@ async def download_audio(task_id: str):
 
     return FileResponse(file_path, media_type="audio/mpeg", filename=filename)
 
+if __name__ == '__main__':
+    uvicorn.run('main:app', host='0.0.0.0', port=8000)
 
 """
 Clerk/Convex
