@@ -75,4 +75,4 @@ jobs:
         with:
           app-name: 'teachers-pet-translate'
           slot-name: 'Production'
-          startup-command: "gunicorn --worker-class uvicorn.workers.UvicornWorker --timeout 600 --access-logfile '-' --error-logfile '-' app:app"
+          startup-command: 'python -m uvicorn main:app --reload'
