@@ -6,6 +6,7 @@ from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 import deepl
 from dotenv import load_dotenv
@@ -15,6 +16,13 @@ from contextlib import asynccontextmanager
 from pydantic import BaseModel
 
 app = FastAPI()
+origins = [
+    "https://teachers-pet-client.vercel.app",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins
+)
 load_dotenv()
 
 DEEPL_API_KEY = os.getenv("DEEPL_API_KEY")
